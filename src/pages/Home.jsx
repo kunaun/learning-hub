@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 const subjects = [
   {
     id: 1,
@@ -30,6 +31,7 @@ const subjects = [
 ];
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-12">
@@ -59,16 +61,17 @@ export default function Home() {
                 {subject.description}
               </p>
 
-              <button
-                disabled={!subject.available}
-                className={`w-full rounded-xl py-3 font-semibold transition ${
-                  subject.available
-                    ? "bg-blue-600 text-white hover:bg-blue-700"
-                    : "cursor-not-allowed bg-slate-300 text-slate-600"
-                }`}
-              >
-                {subject.available ? "Start Learning" : "Coming Soon"}
-              </button>
+           <button
+            onClick={() => subject.available && navigate("/english")}
+            disabled={!subject.available}
+            className={`w-full rounded-xl py-3 font-semibold transition ${
+              subject.available
+                ? "bg-blue-600 text-white hover:bg-blue-700"
+                : "cursor-not-allowed bg-slate-300 text-slate-600"
+            }`}
+          >
+            {subject.available ? "Start Learning" : "Coming Soon"}
+          </button>
             </div>
           ))}
         </div>
