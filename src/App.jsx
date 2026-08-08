@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import English from "./pages/English";
 // เพิ่มบรรทัดนี้
 import Pronouns from "./pages/Pronouns";
+import Tense from "./pages/Tense";
 
 export default function App() {
   return (
@@ -14,8 +15,12 @@ export default function App() {
 
         {/* เพิ่มตรงนี้ */}
         <Route
-          path="/english/pronouns"
+          path="/pronouns"
           element={<Pronouns />}
+        />
+       <Route
+          path="/tense"
+          element={<Tense />}
         />
       </Routes>
     </BrowserRouter>

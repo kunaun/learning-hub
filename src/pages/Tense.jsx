@@ -1,26 +1,20 @@
 import { useState } from "react";
-import pronouns from "../data/pronouns";
+import pronouns from "../data/tense";
 import { Link } from "react-router-dom";
 
 export default function Pronouns() {
 
+const shuffledQuestions = [...tense].sort(() => Math.random() - 0.5);    
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
 
-  const quiz = pronouns[index];
-  const [score, setScore] = useState(0);
+    const quiz = shuffledQuestions[index];
 
+  function choose(choice) {
+    if (selected) return;
 
-
-function choose(choice) {
-  if (selected) return;
-
-  setSelected(choice);
-
-  if (choice === quiz.answer) {
-    setScore(score + 1);
+    setSelected(choice);
   }
-}
 
   function next() {
     setSelected(null);
@@ -37,7 +31,7 @@ function choose(choice) {
       </Link>
 
         <h1 className="text-3xl font-bold mb-2">
-          Pronouns
+          Tense
         </h1>
 
         <p className="mb-6">
@@ -105,10 +99,6 @@ function choose(choice) {
 
               <div className="mt-6 text-xl font-bold text-green-700">
                 🎉 Finished
-
-                <div className="mt-3">
-                   Score: {score} / {pronouns.length}
-                </div>
               </div>
 
             )}

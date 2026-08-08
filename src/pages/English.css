@@ -1,0 +1,20 @@
+.lesson-container {
+  padding: 20px;
+}
+
+.lesson-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 15px;
+  background: white;
+}
+
+.lesson-card h2 {
+  margin-bottom: 8px;
+}
+
+.lesson-card a {
+  display: inline-block;
+  margin-top: 10px;
+}

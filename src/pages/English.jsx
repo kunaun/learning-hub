@@ -1,72 +1,38 @@
 import { Link } from "react-router-dom";
-
-import { englishLessons } from "../data/english";
+import englishLessons from "../data/englishLessons";
+import "./English.css";
 
 export default function English() {
-  return (
-    <div className="min-h-screen bg-slate-100">
+return (
+  <div className="lesson-container">
 
-      <div className="mx-auto max-w-5xl p-8">
+    <Link to="/">
+      🏠 Home
+    </Link>
 
-        <Link
-          to="/"
-          className="text-blue-600 hover:underline"
-        >
-          ← Home
-        </Link>
+    <h1>📚 English</h1>
 
-        <h1 className="mt-6 text-4xl font-bold">
-          📘 English
-        </h1>
+    {englishLessons.map((lesson) => (
+      <div 
+        className="lesson-card" 
+        key={lesson.id}
+      >
 
-        <p className="mt-2 text-slate-600">
-          Choose a lesson
-        </p>
+        <h2>{lesson.title}</h2>
 
-        <div className="mt-8 grid gap-4">
+        <p>{lesson.description}</p>
 
-        {englishLessons.map((lesson) => {
-
-        if (lesson.id === "pronouns") {
-            return (
-            <Link
-                key={lesson.id}
-                to="/english/pronouns"
-                className="block rounded-xl bg-white p-5 shadow transition hover:bg-blue-50"
-            >
-                <h2 className="text-xl font-semibold">
-                {lesson.title}
-                </h2>
-
-                <p className="mt-1 text-sm">
-                {lesson.description}
-                </p>
-            </Link>
-            );
-        }
-
-        return (
-            <button
-            key={lesson.id}
-            disabled
-            className="rounded-xl p-5 text-left shadow bg-slate-200 text-slate-500 cursor-not-allowed"
-            >
-            <h2 className="text-xl font-semibold">
-                {lesson.title}
-            </h2>
-
-            <p className="mt-1 text-sm">
-                {lesson.description}
-            </p>
-            </button>
-        );
-
-        })}
-
-        </div>
+        {lesson.link ? (
+          <Link to={lesson.link}>
+            ⭐ Start Quiz
+          </Link>
+        ) : (
+          <p>{lesson.status}</p>
+        )}
 
       </div>
+    ))}
 
-    </div>
-  );
+  </div>
+);
 }
