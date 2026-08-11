@@ -1,7 +1,4 @@
 const tense = [
-  // ==========================================
-  // Part 1: Present Simple Tense (10 ข้อ)
-  // ==========================================
   {
     question: "She _____ to school by bus every day.",
     choices: ["go", "goes", "going", "went"],
@@ -72,10 +69,6 @@ const tense = [
     explanation:
       "ประธานเป็น My teacher (เอกพจน์) ใช้ Verb to be คือ is ใน Present Simple Tense",
   },
-
-  // ==========================================
-  // Part 2: Present Continuous Tense (10 ข้อ)
-  // ==========================================
   {
     question: "Look! The children _____ in the playground.",
     choices: ["runs", "are running", "run", "is running"],
