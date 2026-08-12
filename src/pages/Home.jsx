@@ -25,10 +25,19 @@ const subjects = [
   },
   {
     id: 4,
-    icon: "🇹🇭",
+    icon: "📜",
     name: "Thai",
-    description: "Coming Soon",
-    available: false,
+    description: "Thai & Quiz",
+    available: true,
+    path: "/thai",
+  },
+    {
+    id: 5,
+    icon: "🌎",
+    name: "Social Studies",
+    description: "Social Studies & Quiz",
+    available: true,  
+    path: "/social",
   },
 ];
 

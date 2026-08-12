@@ -16,6 +16,19 @@ import livingthings from "../data/science/livingthings";
 import substances from "../data/science/substancesAndChange";
 import forceEnergy from "../data/science/forceAndEnergy";
 import earthSpace from "../data/science/earthAndSpace";
+import thaiLessons from "../data/thaiLessons";
+import dialects from "../data/thai/dialects";
+import foreignLoanwords from "../data/thai/foreignLoanwords";
+import languageSkills from "../data/thai/languageSkills";
+import partsOfSpeech from "../data/thai/partsOfSpeech";
+import phoneticsAndSpelling from "../data/thai/phoneticsAndSpelling";
+import socialLessons from "../data/socialLessons";
+import history from "../data/social/history";
+import civicsAndCulture from "../data/social/civicsAndCulture";
+import religionAndEthics from "../data/social/religionAndEthics";
+import economics from "../data/social/economics";
+import geography from "../data/social/geography";
+
 
 const lessonData = {
   nouns, verbs, adjectives, adverbs, prepositions, conjunctions, articles,
@@ -26,6 +39,16 @@ const lessonData = {
   "substances": substances,
   "force-energy": forceEnergy,
   "earth-space": earthSpace,
+  "dialects": dialects,
+  "foreignLoanwords": foreignLoanwords,
+  "languageSkills": languageSkills,
+  "partsOfSpeech": partsOfSpeech,
+  "phoneticsAndSpelling": phoneticsAndSpelling,
+  "history": history,
+  "civicsAndCulture": civicsAndCulture,
+  "religionAndEthics": religionAndEthics,
+  "economics": economics,
+  "geography": geography,
 };
 
 const lessonTitles = {
@@ -36,6 +59,16 @@ const lessonTitles = {
 "substances": "Substances & Change", 
 "force-energy": "Force & Energy",
   "earth-space": "Earth & Space",
+  "dialects": "Living Things & Environment",
+  "foreignLoanwords": "Foreign Loanwords",
+  "languageSkills": "Language Skills",
+  "partsOfSpeech": "Parts of Speech",
+  "phoneticsAndSpelling": "Phonetics and Spelling",
+  "history": "History",
+  "civicsAndCulture": "Civics and Culture",
+  "religionAndEthics": "Religion and Ethics",
+  "economics": "Economics",
+  "geography": "Geography",
 };
 
 export default function Lesson() {
