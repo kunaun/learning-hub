@@ -11,18 +11,31 @@ import articles from "../data/articles";
 import sentenceStructure from "../data/sentence-structure";
 import tense from "../data/tense";
 import pronouns from "../data/pronouns";
+import scienceLessons from "../data/scienceLessons";
+import livingthings from "../data/science/livingthings";
+import substances from "../data/science/substancesAndChange";
+import forceEnergy from "../data/science/forceAndEnergy";
+import earthSpace from "../data/science/earthAndSpace";
 
 const lessonData = {
   nouns, verbs, adjectives, adverbs, prepositions, conjunctions, articles,
   "sentence-structure": sentenceStructure,
   "tense": tense,
   "pronouns": pronouns,
+  "living-things": livingthings,
+  "substances": substances,
+  "force-energy": forceEnergy,
+  "earth-space": earthSpace,
 };
 
 const lessonTitles = {
   nouns: "Nouns", verbs: "Verbs", adjectives: "Adjectives", adverbs: "Adverbs",
   prepositions: "Prepositions", conjunctions: "Conjunctions", articles: "Articles",
   "sentence-structure": "Sentence Structure","tense": "Tense", "pronouns": "Pronouns",
+  "living-things": "Living Things & Environment",  
+"substances": "Substances & Change", 
+"force-energy": "Force & Energy",
+  "earth-space": "Earth & Space",
 };
 
 export default function Lesson() {
@@ -37,7 +50,8 @@ export default function Lesson() {
   if (!questions.length) {
     return <div className="min-h-screen bg-slate-100 p-8 text-center">
       <h1 className="text-2xl font-bold">ไม่พบแบบทดสอบ</h1>
-      <Link to="/english" className="mt-6 inline-block text-blue-600">← กลับไป English</Link>
+      <Link to="/english" className="mt-6 inline-block text-blue-600">← กลับไป English</Link>   
+     <Link to="/">🏠 Home</Link>   
     </div>;
   }
 
@@ -83,6 +97,7 @@ export default function Lesson() {
           <Link to="/english" className="rounded-xl bg-slate-200 px-6 py-3 font-semibold text-slate-700 hover:bg-slate-300">
             📚 กลับไป English
           </Link>
+           <Link to="/">🏠 Home</Link>   
         </div>
       </div>
     </div>;
@@ -94,7 +109,9 @@ export default function Lesson() {
     <div className="mx-auto max-w-3xl">
       <Link to="/english" className="text-sm font-semibold text-slate-600 hover:text-blue-600">
         ← กลับไป English
-      </Link>
+      </Link>    
+      <br />   
+       <Link to="/">🏠 Home</Link>   
       <div className="mt-5 rounded-2xl bg-white p-6 shadow-lg sm:p-8">
         <div className="flex items-center justify-between gap-4">
           <div>

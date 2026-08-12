@@ -6,6 +6,7 @@ const subjects = [
     name: "English",
     description: "Grammar & Quiz",
     available: true,
+    path: "/english",
   },
   {
     id: 2,
@@ -18,8 +19,9 @@ const subjects = [
     id: 3,
     icon: "🧪",
     name: "Science",
-    description: "Coming Soon",
-    available: false,
+    description: "Science & Quiz",
+    available: true,
+    path: "/science",
   },
   {
     id: 4,
@@ -62,7 +64,7 @@ export default function Home() {
               </p>
 
            <button
-            onClick={() => subject.available && navigate("/english")}
+            onClick={() => subject.available && navigate(subject.path) }
             disabled={!subject.available}
             className={`w-full rounded-xl py-3 font-semibold transition ${
               subject.available

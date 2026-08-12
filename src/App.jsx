@@ -5,6 +5,8 @@ import English from "./pages/English";
 import Pronouns from "./pages/Pronouns";
 import Tense from "./pages/Tense";
 import Lesson from "./pages/Lesson";
+import Science from "./pages/Science";
+
 
 export default function App() {
   return (
@@ -12,8 +14,10 @@ export default function App() {
       <Routes>
 
         <Route path="/" element={<Home />} />
-
         <Route path="/english" element={<English />} />
+        
+        
+
 {/* 
         <Route
           path="/pronouns"
@@ -27,6 +31,12 @@ export default function App() {
  */}
         <Route
           path="/lesson/:lessonId"
+          element={<Lesson />}
+        />
+
+        <Route path="/science" element={<Science />} />
+        <Route
+          path="/science/:lessonId"
           element={<Lesson />}
         />
 
