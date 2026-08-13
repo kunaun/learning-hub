@@ -39,6 +39,14 @@ const subjects = [
     available: true,  
     path: "/social",
   },
+  {
+    id: 6,
+    icon: "📚",
+    name: "Vocabulary",
+    description: "Vocabulary & Quiz",
+    available: true,
+    path: "/vocabulary",
+  }
 ];
 
 export default function Home() {
