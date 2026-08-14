@@ -1,16 +1,16 @@
 const vocabulary = [
-  { word: "addition", thai: "การบวก", pos: "Noun (N.)", definition: "process of adding something to something else." },
-  { word: "subtraction", thai: "การลบ", pos: "Noun (N.)", definition: "taking one number or amount away from another." },
-  { word: "multiplication", thai: "การคูณ", pos: "Noun (N.)", definition: "the process or skill of multiplying." },
-  { word: "melting", thai: "การละลาย", pos: "Noun (N.)", definition: "the action or process of liquefying due to heat." },
-  { word: "vaporization", thai: "การระเหยกลายเป็นไอ", pos: "Noun (N.)", definition: "phase transition from the liquid phase to vapor." },
-  { word: "boiling", thai: "การเดือด", pos: "Noun (N.)", definition: "rapid phase transition from liquid to gas or vapor." },
-  { word: "intangible", thai: "ซึ่งสัมผัสไม่ได้", pos: "Adjective (Adj.)", definition: "unable to be touched." },
-  { word: "allocation", thai: "การแบ่งส่วน", pos: "Noun (N.)", definition: "the division of things into shares or portions." },
-  { word: "income", thai: "รายได้", pos: "Noun (N.)", definition: "money received for work or through investments." },
-  { word: "idea", thai: "ความคิด", pos: "Noun (N.)", definition: "thought or conception that is the product of mental activity." },
-  { word: "wrong", thai: "ผิด", pos: "Noun (N.)", definition: "an unjust or immoral act." },
-  { word: "good", thai: "ดี", pos: "Adjective (Adj.)", definition: "being positive or desirable in nature; not bad or poor." },
+  { word: "graph", thai: "เส้นกราฟ", pos: "Noun (N.)", definition: "a diagram showing the relation between variables." },
+  { word: "information", thai: "ข้อมูล", pos: "Noun (N.)", definition: "facts provided about something or someone." },
+  { word: "chart", thai: "แผนภูมิ", pos: "Noun (N.)", definition: "information in the form of a table, graph, or diagram." },
+  { word: "solidification", thai: "การทำให้แข็งตัว", pos: "Noun (N.)", definition: "the act or process of becoming a hard" },
+  { word: "deposition", thai: "การทับถม", pos: "Noun (N.)", definition: "the action of deposing someone." },
+  { word: "sublimation", thai: "การระเหิด", pos: "Noun (N.)", definition: "transition of substance from solid to the gas state." },
+  { word: "stability", thai: "ความมั่นคง", pos: "Noun (N.)", definition: "when something is strong or balanced." },
+  { word: "borrower", thai: "ผู้ขอยืม", pos: "Noun (N.)", definition: "someone who takes something from another and returns it." },
+  { word: "inflation", thai: "เงินเฟ้อ", pos: "Noun (N.)", definition: "the rate of increase in prices over time." },
+  { word: "technology", thai: "เทคโนโลยี", pos: "Noun (N.)", definition: "the application of science, especially to industrial or commercial objectives." },
+  { word: "machine", thai: "เครื่องจักรกล", pos: "Noun (N.)", definition: "a device consisting of fixed and moving parts that modifies." },
+  { word: "television", thai: "โทรทัศน์", pos: "Noun (N.)", definition: "a piece of electrical equipment which you can watch programs with pictures and sounds." },
 ];
 
 export default vocabulary;
