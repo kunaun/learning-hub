@@ -18,6 +18,7 @@ function shuffle(items) {
   return [...items].sort(() => Math.random() - 0.5);
 }
 
+
 export default function Vocabulary() {
   const [mode, setMode] = useState("learn");
   const [index, setIndex] = useState(0);
@@ -27,28 +28,45 @@ export default function Vocabulary() {
   const [typeIndex, setTypeIndex] = useState(0);
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
+  //const [quizQuestions, setQuizQuestions] = useState(() => shuffle(vocabulary));
 
-  const word = vocabulary[index];
-  const quizWord = vocabulary[quizIndex];
-  const typeWord = vocabulary[typeIndex];
+  const [shuffledVocabulary, setShuffledVocabulary] = useState(() =>  shuffle(vocabulary) );
+
+  const word = shuffledVocabulary[index];
+  const quizWord = shuffledVocabulary[quizIndex];
+  const typeWord = shuffledVocabulary[typeIndex];
 
   const choices = useMemo(() => {
-    const others = shuffle(vocabulary.filter((_, i) => i !== quizIndex))
+    const others = shuffle(
+      shuffledVocabulary.filter((item) => item.word !== quizWord.word)
+    )
       .slice(0, 3)
       .map((item) => item.thai);
-    return shuffle([quizWord.thai, ...others]);
-  }, [quizIndex]);
 
+    return shuffle([quizWord.thai, ...others]);
+  }, [quizWord, shuffledVocabulary]);
+/*
   const resetQuiz = () => {
+    setQuizQuestions(shuffle(vocabulary));
     setQuizIndex(0);
     setQuizScore(0);
     setSelected(null);
   };
-
+  */
+  const resetAll = () => {
+  setShuffledVocabulary(shuffle(vocabulary));
+  setIndex(0);
+  setQuizIndex(0);
+  setQuizScore(0);
+  setSelected(null);
+  setTypeIndex(0);
+  setAnswer("");
+  setFeedback("");
+  };
   const nextLearn = () => {
-    const next = (index + 1) % vocabulary.length;
+    const next = (index + 1) % shuffledVocabulary.length;
     setIndex(next);
-    speak(vocabulary[next].word);
+    speak(shuffledVocabulary[next].word);
   };
 
   const chooseQuiz = (choice) => {
@@ -60,7 +78,7 @@ export default function Vocabulary() {
   };
 
   const nextQuiz = () => {
-    if (quizIndex === vocabulary.length - 1) {
+    if (quizIndex === shuffledVocabulary.length - 1) {
       setQuizIndex(0);
       setQuizScore(0);
     } else {
@@ -76,7 +94,7 @@ export default function Vocabulary() {
   };
 
   const nextType = () => {
-    setTypeIndex((i) => (i + 1) % vocabulary.length);
+    setTypeIndex((i) => (i + 1) % shuffledVocabulary.length);
     setAnswer("");
     setFeedback("");
   };
@@ -101,9 +119,9 @@ export default function Vocabulary() {
         </div>
 
         <div className="mb-4 flex gap-2">
-          <button className={tabClass("learn")} onClick={() => setMode("learn")}>📖 เรียนรู้</button>
-          <button className={tabClass("quiz")} onClick={() => { setMode("quiz"); resetQuiz(); }}>🎯 เลือกคำแปล</button>
-          <button className={tabClass("type")} onClick={() => setMode("type")}>✍️ พิมพ์ศัพท์</button>
+         <button  className={tabClass("quiz")} onClick={() => {resetAll(); setMode("quiz");  }}>  🎯 เลือกคำแปล</button>
+         <button  className={tabClass("learn")}onClick={() => {resetAll(); setMode("learn"); }}>  📖 เรียนรู้</button>
+         <button  className={tabClass("type")} onClick={() => {resetAll(); setMode("type");  }}>  ✍️ พิมพ์ศัพท์</button>
         </div>
 
         {mode === "learn" && (
