@@ -71,10 +71,22 @@ const lessonTitles = {
   "geography": "Geography",
 };
 
+function shuffleQuestions(questions) {
+  const shuffled = [...questions];
+
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  return shuffled;
+}
+
 export default function Lesson() {
   const { lessonId } = useParams();
-  const questions = lessonData[lessonId] || [];
+  const sourceQuestions = lessonData[lessonId] || [];
   const title = lessonTitles[lessonId] || "English Quiz";
+  const [questions, setQuestions] = useState(() => shuffleQuestions(sourceQuestions));
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
@@ -106,6 +118,7 @@ export default function Lesson() {
   };
 
   const restart = () => {
+    setQuestions(shuffleQuestions(sourceQuestions));
     setCurrent(0);
     setSelected(null);
     setScore(0);
