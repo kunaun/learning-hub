@@ -83,8 +83,13 @@ function shuffleQuestions(questions) {
 }
 
 export default function Lesson() {
-  const { lessonId } = useParams();
-  const sourceQuestions = lessonData[lessonId] || [];
+const { lessonId } = useParams();
+
+const lesson = lessonData[lessonId];
+
+const sourceQuestions = Array.isArray(lesson)
+  ? lesson
+  : lesson?.questions || [];
   const title = lessonTitles[lessonId] || "English Quiz";
   const [questions, setQuestions] = useState(() => shuffleQuestions(sourceQuestions));
   const [current, setCurrent] = useState(0);

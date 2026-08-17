@@ -9,6 +9,8 @@ import Science from "./pages/Science";
 import Thai from "./pages/Thai";
 import Social from "./pages/Social";
 import Vocabulary from "./pages/Vocabulary";
+import ScienceSummary from "./pages/ScienceSummary";
+
 
 export default function App() {
   return (
@@ -40,6 +42,10 @@ export default function App() {
         <Route
           path="/science/:lessonId"
           element={<Lesson />}
+        />
+        <Route
+        path="/science/:lessonId/summary"
+        element={<ScienceSummary />}
         />
 
          <Route path="/thai" element={<Thai />} />
