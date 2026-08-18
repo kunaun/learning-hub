@@ -75,14 +75,25 @@ export default function thai() {
                 {lesson.description}
               </p>
 
-              <button
-                onClick={() =>
-                  navigate(`/thai/${lesson.id}`)
-                }
-                className="w-full rounded-xl bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700"
-              >
-                ⭐ Start Quiz
-              </button>
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() =>
+                    navigate(`/thai/${lesson.id}/summary`)
+                  }
+                  className="rounded-xl bg-emerald-500 py-3 font-semibold text-white hover:bg-emerald-600"
+                >
+                  📖 สรุปเนื้อหา
+                </button>
+
+                <button
+                  onClick={() =>
+                    navigate(`/thai/${lesson.id}`)
+                  }
+                  className="rounded-xl bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700"
+                >
+                  📝 แบบฝึกหัด
+                </button>
+              </div>
             </div>
           ))}
         </div>

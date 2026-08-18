@@ -10,6 +10,7 @@ import Thai from "./pages/Thai";
 import Social from "./pages/Social";
 import Vocabulary from "./pages/Vocabulary";
 import ScienceSummary from "./pages/ScienceSummary";
+import ThaiSummary from "./pages/ThaiSummary";
 
 
 export default function App() {
@@ -52,6 +53,10 @@ export default function App() {
         <Route
           path="/thai/:lessonId"
           element={<Lesson />}
+        />
+        <Route
+        path="/thai/:lessonId/summary"
+        element={<ThaiSummary />}
         />
 
         <Route path="/social" element={<Social />} />
