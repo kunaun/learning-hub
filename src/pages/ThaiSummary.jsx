@@ -9,10 +9,10 @@ import phoneticsAndSpelling from "../data/thai/phoneticsAndSpelling";
 
 const thaiData = {
   "dialects": dialects,
-  "foreign-loanwords": foreignLoanwords,
-  "language-skills": languageSkills,
-  "parts-of-speech": partsOfSpeech,
-  "phonetics-and-spelling": phoneticsAndSpelling,  
+  "foreignLoanwords": foreignLoanwords,
+  "languageSkills": languageSkills,
+  "partsOfSpeech": partsOfSpeech,
+  "phoneticsAndSpelling": phoneticsAndSpelling,  
 };
 
 export default function thaiSummary() {

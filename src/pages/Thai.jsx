@@ -4,7 +4,7 @@ const thaiLessons = [
   {
     id: "dialects",
     icon: "🗣️",
-    title: "Living Things & Environment",
+    title: "ภาษาถิ่น (ภาษาถิ่นเหนือ ถิ่นอีสาน และถิ่นใต้)",
     description: "ภาษาถิ่น (ภาษาถิ่นเหนือ ถิ่นอีสาน และถิ่นใต้)",
   },
   {
