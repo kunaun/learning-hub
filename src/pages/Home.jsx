@@ -1,100 +1,40 @@
-import { useNavigate } from "react-router-dom";
-const subjects = [
-  {
-    id: 1,
-    icon: "📘",
-    name: "English",
-    description: "Grammar & Quiz",
-    available: true,
-    path: "/english",
-  },
-  {
-    id: 2,
-    icon: "➗",
-    name: "Mathematics",
-    description: "Coming Soon",
-    available: false,
-  },
-  {
-    id: 3,
-    icon: "🧪",
-    name: "Science",
-    description: "Science & Quiz",
-    available: true,
-    path: "/science",
-  },
-  {
-    id: 4,
-    icon: "📜",
-    name: "Thai",
-    description: "Thai & Quiz",
-    available: true,
-    path: "/thai",
-  },
-    {
-    id: 5,
-    icon: "🌎",
-    name: "Social Studies",
-    description: "Social Studies & Quiz",
-    available: true,  
-    path: "/social",
-  },
-  {
-    id: 6,
-    icon: "📚",
-    name: "Vocabulary",
-    description: "Vocabulary & Quiz",
-    available: true,
-    path: "/vocabulary",
-  }
-];
+import { useNavigate } from 'react-router-dom';
+import { gradeGroups } from '../data/learningHubStructure';
 
 export default function Home() {
   const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen bg-slate-100">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        {/* Header */}
-        <div className="mb-12 text-center">
-          <h1 className="text-5xl font-bold">📚 Learning Hub</h1>
+    <main className="hub-shell">
+      <section className="hero-panel">
+        <div className="hero-badge">LEARNING HUB</div>
+        <h1>เรียนรู้ • ทำแบบทดสอบ • เล่นเกม</h1>
+        <p>เลือกช่วงชั้นเพื่อเข้าสู่ Learning Hub</p>
+      </section>
 
-          <p className="mt-4 text-lg text-slate-600">
-            Learn Anywhere. Anytime.
-          </p>
-        </div>
-
-        {/* Cards */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {subjects.map((subject) => (
-            <div
-              key={subject.id}
-              className="rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="mb-5 text-5xl">{subject.icon}</div>
-
-              <h2 className="text-2xl font-bold">
-                {subject.name}
-              </h2>
-
-              <p className="mt-2 mb-6 text-slate-500">
-                {subject.description}
-              </p>
-
-           <button
-            onClick={() => subject.available && navigate(subject.path) }
-            disabled={!subject.available}
-            className={`w-full rounded-xl py-3 font-semibold transition ${
-              subject.available
-                ? "bg-blue-600 text-white hover:bg-blue-700"
-                : "cursor-not-allowed bg-slate-300 text-slate-600"
-            }`}
-          >
-            {subject.available ? "Start Learning" : "Coming Soon"}
-          </button>
-            </div>
+      <section className="section-block">
+        <div className="section-title">🎓 GRADE LEVEL</div>
+        <div className="grade-group-grid">
+          {gradeGroups.map((group) => (
+            <article className="grade-group-card" key={group.id}>
+              <div className="grade-group-head">
+                <span>{group.emoji}</span>
+                <div>
+                  <h2>{group.label}</h2>
+                  <small>{group.grades.map((g) => g.label).join(' • ')}</small>
+                </div>
+              </div>
+              <div className="grade-buttons">
+                {group.grades.map((grade) => (
+                  <button key={grade.id} onClick={() => navigate(`/grade/${grade.id}`)}>
+                    {grade.label}
+                  </button>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
