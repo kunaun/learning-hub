@@ -5,6 +5,8 @@ import SubjectHub from './pages/SubjectHub';
 import Quiz from './pages/Quiz';
 import GameZone from './pages/GameZone';
 import './App.css';
+import QuickTest from './pages/QuickTest';
+
 
 export default function App() {
   return (
@@ -15,7 +17,9 @@ export default function App() {
         <Route path="/grade/:gradeId/subject/:subjectId" element={<SubjectHub />} />
         <Route path="/grade/:gradeId/subject/:subjectId/quiz" element={<Quiz />} />
         <Route path="/game" element={<GameZone />} />
+        <Route path="/quick-test" element={<QuickTest />} />
       </Routes>
+      
     </BrowserRouter>
   );
 }
