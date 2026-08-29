@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { subjects } from '../data/learningHubStructure';
+import { getP5Questions } from '../data/p5Content';
+import { getStudentName } from './Home';
+
+const PLAYER_KEY = 'learningHub.playerProgress';
 
 const characters = [
   { id: 'thai', name: 'น้องอักษรา', subject: 'ภาษาไทย', icon: '📚', avatar: '👧🏻' },
@@ -10,51 +14,22 @@ const characters = [
   { id: 'english', name: 'น้องอิงลิช', subject: 'ภาษาอังกฤษ', icon: '🇬🇧', avatar: '👧🏼' },
   { id: 'art', name: 'น้องศิลป์', subject: 'ศิลปะ', icon: '🎨', avatar: '👩🏻‍🎨' },
   { id: 'health', name: 'น้องสุขใจ', subject: 'สุขศึกษา', icon: '🏀', avatar: '🏃🏻' },
-  { id: 'career', name: 'น้องอาชีพ', subject: 'การงาน', icon: '👨‍🍳', avatar: '👨🏻‍🍳' },
+  { id: 'career', name: 'น้องอาชีพ', subject: 'การงานอาชีพ', icon: '👨🏻‍🍳', avatar: '👨🏻‍🍳' },
 ];
 
-const questions = {
-  social: [
-    { q: 'ใครคือพระมหากษัตริย์องค์แรกของกรุงรัตนโกสินทร์?', options: ['รัชกาลที่ 1', 'รัชกาลที่ 2', 'รัชกาลที่ 3', 'รัชกาลที่ 4'], answer: 0 },
-    { q: 'กรุงรัตนโกสินทร์สถาปนาในปีใด?', options: ['พ.ศ. 2325', 'พ.ศ. 2350', 'พ.ศ. 2400', 'พ.ศ. 2500'], answer: 0 },
-    { q: 'วันจักรีตรงกับวันที่เท่าไร?', options: ['1 มกราคม', '6 เมษายน', '5 ธันวาคม', '10 ธันวาคม'], answer: 1 },
-    { q: 'ข้อใดเป็นหลักฐานทางประวัติศาสตร์?', options: ['ศิลาจารึก', 'เกม', 'การ์ตูน', 'โฆษณา'], answer: 0 },
-    { q: 'นักประวัติศาสตร์ศึกษาสิ่งใดเป็นหลัก?', options: ['หลักฐานและเหตุการณ์ในอดีต', 'เฉพาะกีฬา', 'เฉพาะอาหาร', 'เฉพาะดนตรี'], answer: 0 },
-  ],
-  english: [
-    { q: 'Which word is a pronoun?', options: ['he', 'run', 'blue', 'quickly'], answer: 0 },
-    { q: 'Choose the correct sentence.', options: ['She is happy.', 'She happy is.', 'Is she happy.', 'Happy she is.'], answer: 0 },
-    { q: 'What is the opposite of “big”?', options: ['small', 'fast', 'long', 'hot'], answer: 0 },
-    { q: 'Choose the correct word: I ___ a student.', options: ['am', 'is', 'are', 'be'], answer: 0 },
-    { q: 'What does “book” mean?', options: ['หนังสือ', 'โต๊ะ', 'บ้าน', 'โรงเรียน'], answer: 0 },
-  ],
-  math: [
-    { q: '12 + 8 = ?', options: ['18', '20', '22', '24'], answer: 1 },
-    { q: '9 × 3 = ?', options: ['18', '21', '27', '30'], answer: 2 },
-    { q: '45 ÷ 5 = ?', options: ['7', '8', '9', '10'], answer: 2 },
-    { q: '100 - 37 = ?', options: ['53', '63', '67', '73'], answer: 1 },
-    { q: 'ครึ่งหนึ่งของ 50 คือ?', options: ['20', '25', '30', '35'], answer: 1 },
-  ],
-  thai: [
-    { q: 'ข้อใดเป็นคำนาม?', options: ['โรงเรียน', 'วิ่ง', 'สวย', 'อย่างรวดเร็ว'], answer: 0 },
-    { q: 'คำใดมีความหมายตรงข้ามกับ “สูง”?', options: ['ใหญ่', 'ต่ำ', 'ยาว', 'กว้าง'], answer: 1 },
-    { q: 'ข้อใดเป็นคำกริยา?', options: ['กิน', 'โต๊ะ', 'แดง', 'บ้าน'], answer: 0 },
-    { q: 'พยัญชนะไทยมีกี่ตัว?', options: ['44', '42', '46', '48'], answer: 0 },
-    { q: 'คำว่า “หนังสือ” เป็นคำประเภทใด?', options: ['คำนาม', 'คำกริยา', 'คำวิเศษณ์', 'คำสรรพนาม'], answer: 0 },
-  ],
-  science: [
-    { q: 'สิ่งมีชีวิตใดสังเคราะห์แสงได้?', options: ['ต้นไม้', 'ก้อนหิน', 'น้ำ', 'อากาศ'], answer: 0 },
-    { q: 'น้ำเดือดที่อุณหภูมิเท่าใดโดยทั่วไป?', options: ['50°C', '75°C', '100°C', '150°C'], answer: 2 },
-    { q: 'โลกโคจรรอบอะไร?', options: ['ดวงจันทร์', 'ดวงอาทิตย์', 'ดาวอังคาร', 'ดาวเหนือ'], answer: 1 },
-    { q: 'แรงที่ดึงวัตถุเข้าหาโลกเรียกว่าอะไร?', options: ['แรงโน้มถ่วง', 'แรงลม', 'แรงเสียดทาน', 'แรงแม่เหล็ก'], answer: 0 },
-    { q: 'อวัยวะใดใช้หายใจเป็นหลัก?', options: ['หัวใจ', 'ปอด', 'กระเพาะ', 'ตับ'], answer: 1 },
-  ],
-};
+const opponent = { name: 'ChocoBee', avatar: '🧙🏻‍♀️' };
 
-const fallbackQuestions = questions.social;
+function getProgress() {
+  try { return JSON.parse(sessionStorage.getItem(PLAYER_KEY)) || { xp: 0, level: 1 }; }
+  catch { return { xp: 0, level: 1 }; }
+}
 
-function getQuestions(subjectId) {
-  return questions[subjectId] || fallbackQuestions;
+function addXp(amount) {
+  const current = getProgress();
+  const xp = current.xp + amount;
+  const level = Math.floor(xp / 100) + 1;
+  sessionStorage.setItem(PLAYER_KEY, JSON.stringify({ xp, level }));
+  return { xp, level };
 }
 
 function shuffle(list) {
@@ -63,20 +38,22 @@ function shuffle(list) {
 
 export default function GameZone() {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const initialSubject = searchParams.get('subject') || 'social';
+  const [params] = useSearchParams();
+  const initialSubject = params.get('subject') || 'social';
+  const name = getStudentName() || 'ผู้เล่น';
+
   const [screen, setScreen] = useState('home');
   const [subjectId, setSubjectId] = useState(initialSubject);
-  const [questionSet, setQuestionSet] = useState('basic');
   const [player, setPlayer] = useState(characters.find((c) => c.id === initialSubject) || characters[0]);
-  const [opponent] = useState(characters.find((c) => c.id !== initialSubject) || characters[3]);
+  const [questionSet, setQuestionSet] = useState('basic');
+  const [questionsForBattle, setQuestionsForBattle] = useState(() => shuffle(getP5Questions(initialSubject)));
   const [round, setRound] = useState(0);
-  const [playerHp, setPlayerHp] = useState(100);
-  const [opponentHp, setOpponentHp] = useState(100);
-  const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(15);
+  const [playerHp, setPlayerHp] = useState(3);
+  const [opponentHp, setOpponentHp] = useState(3);
+  const [score, setScore] = useState(0);
   const [answered, setAnswered] = useState(null);
-  const [questionsForBattle, setQuestionsForBattle] = useState(() => shuffle(getQuestions(initialSubject)));
+  const [progress, setProgress] = useState(getProgress);
 
   const currentQuestion = questionsForBattle[round];
   const currentSubject = useMemo(() => subjects.find((s) => s.id === subjectId), [subjectId]);
@@ -85,7 +62,7 @@ export default function GameZone() {
     if (screen !== 'battle' || answered !== null) return undefined;
     if (timeLeft <= 0) {
       setAnswered('timeout');
-      setPlayerHp((hp) => Math.max(0, hp - 12));
+      setPlayerHp((hp) => Math.max(0, hp - 1));
       return undefined;
     }
     const timer = window.setTimeout(() => setTimeLeft((t) => t - 1), 1000);
@@ -93,10 +70,10 @@ export default function GameZone() {
   }, [screen, timeLeft, answered]);
 
   const startBattle = () => {
-    setQuestionsForBattle(shuffle(getQuestions(subjectId)));
+    setQuestionsForBattle(shuffle(getP5Questions(subjectId)));
     setRound(0);
-    setPlayerHp(100);
-    setOpponentHp(100);
+    setPlayerHp(3);
+    setOpponentHp(3);
     setScore(0);
     setAnswered(null);
     setTimeLeft(15);
@@ -110,16 +87,18 @@ export default function GameZone() {
     setAnswered(correct ? (fast ? 'correct-fast' : 'correct') : 'wrong');
 
     if (correct) {
-      const damage = fast ? 35 : 25;
-      setOpponentHp((hp) => Math.max(0, hp - damage));
+      setOpponentHp((hp) => Math.max(0, hp - 1));
       setScore((s) => s + (fast ? 200 : 120));
     } else {
-      setPlayerHp((hp) => Math.max(0, hp - 15));
+      setPlayerHp((hp) => Math.max(0, hp - 1));
     }
   };
 
   const nextRound = () => {
     if (opponentHp <= 0 || playerHp <= 0 || round >= questionsForBattle.length - 1) {
+      const won = opponentHp <= 0 && playerHp > 0;
+      const gained = addXp(won ? 40 : 10);
+      setProgress(gained);
       setScreen('result');
       return;
     }
@@ -138,7 +117,8 @@ export default function GameZone() {
     return (
       <main className="game-shell">
         <button className="game-back" onClick={() => setScreen('home')}>← Game Zone</button>
-        <div className="game-titlebar"><span>👤</span> ตัวละครประจำหมวดวิชา</div>
+        <div className="game-titlebar">👤 ตัวละครประจำหมวดวิชา</div>
+        <p className="game-welcome">เลือกตัวละคร 1 ตัวให้กับการ Battle ของ {name}</p>
         <div className="character-grid">
           {characters.map((character) => (
             <button className={`character-card ${player.id === character.id ? 'selected' : ''}`} key={character.id} onClick={() => selectCharacter(character)}>
@@ -158,21 +138,19 @@ export default function GameZone() {
         <button className="game-back" onClick={() => setScreen('home')}>← Game Zone</button>
         <div className="game-titlebar">⚔️ Battle Setup</div>
         <section className="setup-panel">
-          <h1>เลือกวิชา</h1>
+          <h1>พร้อมลุยแล้ว {name}!</h1>
+          <h2>เลือกวิชา</h2>
           <div className="choice-row">
             {subjects.map((subject) => (
-              <button className={`choice-chip ${subjectId === subject.id ? 'active' : ''}`} key={subject.id} onClick={() => setSubjectId(subject.id)}>
+              <button className={`choice-chip ${subjectId === subject.id ? 'active' : ''}`} key={subject.id} onClick={() => { setSubjectId(subject.id); setPlayer(characters.find(c => c.id === subject.id) || player); }}>
                 {subject.icon} {subject.name}
               </button>
             ))}
           </div>
           <h2>เลือกชุดคำถาม</h2>
           <div className="choice-row compact">
-            {['basic', 'challenge'].map((set) => (
-              <button className={`choice-chip ${questionSet === set ? 'active' : ''}`} key={set} onClick={() => setQuestionSet(set)}>
-                {set === 'basic' ? '🌱 ชุดพื้นฐาน' : '🔥 ชุดท้าทาย'}
-              </button>
-            ))}
+            <button className={`choice-chip ${questionSet === 'basic' ? 'active' : ''}`} onClick={() => setQuestionSet('basic')}>🌱 ชุดพื้นฐาน</button>
+            <button className={`choice-chip ${questionSet === 'challenge' ? 'active' : ''}`} onClick={() => setQuestionSet('challenge')}>🔥 ชุดท้าทาย</button>
           </div>
           <button className="battle-start" onClick={startBattle}>⚔️ เริ่ม Battle</button>
         </section>
@@ -184,9 +162,9 @@ export default function GameZone() {
     return (
       <main className="game-shell battle-screen">
         <div className="battle-top">
-          <div className="fighter-head"><span>{player.avatar}</span><strong>{player.name}</strong><small>HP {playerHp}</small><div className="hp-bar"><i style={{ width: `${playerHp}%` }} /></div></div>
+          <div className="fighter-head"><span>{player.avatar}</span><strong>{name}</strong><small>❤️ {playerHp}</small><div className="hp-bar"><i style={{ width: `${(playerHp / 3) * 100}%` }} /></div></div>
           <div className="timer"><small>TIME</small><b>{timeLeft}</b></div>
-          <div className="fighter-head enemy"><span>{opponent.avatar}</span><strong>{opponent.name}</strong><small>HP {opponentHp}</small><div className="hp-bar enemy-bar"><i style={{ width: `${opponentHp}%` }} /></div></div>
+          <div className="fighter-head enemy"><span>{opponent.avatar}</span><strong>{opponent.name}</strong><small>❤️ {opponentHp}</small><div className="hp-bar enemy-bar"><i style={{ width: `${(opponentHp / 3) * 100}%` }} /></div></div>
         </div>
         <div className="versus-area">
           <div className="fighter-big">{player.avatar}</div>
@@ -194,7 +172,7 @@ export default function GameZone() {
           <div className="fighter-big">{opponent.avatar}</div>
         </div>
         <section className="question-panel">
-          <div className="question-meta">คำถาม • {currentSubject?.name || 'ประวัติศาสตร์'} • รอบ {round + 1}</div>
+          <div className="question-meta">คำถาม • {currentSubject?.name || 'วิชา'} • ป.5 • รอบ {round + 1}</div>
           <h1>{currentQuestion?.q}</h1>
           <div className="answer-grid">
             {currentQuestion?.options.map((option, index) => (
@@ -205,10 +183,10 @@ export default function GameZone() {
           </div>
           {answered && (
             <div className={`battle-feedback ${answered.includes('correct') ? 'good' : 'bad'}`}>
-              {answered === 'correct-fast' && '💥 ตอบถูกและเร็ว! โจมตีแรง!'}
-              {answered === 'correct' && '⚔️ ตอบถูก! โจมตี!'}
-              {answered === 'wrong' && '🛡️ ตอบผิด — ไม่โจมตี'}
-              {answered === 'timeout' && '⏰ หมดเวลา — ไม่โจมตี'}
+              {answered === 'correct-fast' && `💥 ${name} ตอบถูกและเร็ว! โจมตีแรง!`}
+              {answered === 'correct' && `⚔️ ${name} ตอบถูก! โจมตี!`}
+              {answered === 'wrong' && `🛡️ ไม่เป็นไรนะ ${name} — ไม่โจมตี`}
+              {answered === 'timeout' && `⏰ หมดเวลาแล้ว ${name} — ไม่โจมตี`}
               <button onClick={nextRound}>{opponentHp <= 0 || playerHp <= 0 || round >= questionsForBattle.length - 1 ? 'ดูผลลัพธ์' : 'ต่อสู้ต่อ →'}</button>
             </div>
           )}
@@ -221,13 +199,15 @@ export default function GameZone() {
     const win = opponentHp <= 0 && playerHp > 0;
     return (
       <main className="game-shell result-screen">
-        <div className="result-banner">{win ? '🏆 VICTORY!' : '⚔️ BATTLE END'}</div>
+        <div className="result-banner">{win ? '🏆 VICTORY!' : '💪 BATTLE END'}</div>
+        <h1>{win ? `${name} ชนะแล้ว!` : `ไม่เป็นไรนะ ${name}!`}</h1>
         <div className="result-fighters">
-          <div><div className="result-avatar">{player.avatar}</div><strong>{player.name}</strong><span>❤️ {Math.max(0, playerHp)} HP</span></div>
+          <div><div className="result-avatar">{player.avatar}</div><strong>{name}</strong><span>{'❤️'.repeat(Math.max(0, playerHp))}</span></div>
           <div className="result-swords">⚔️</div>
-          <div><div className="result-avatar">{opponent.avatar}</div><strong>{opponent.name}</strong><span>❤️ {Math.max(0, opponentHp)} HP</span></div>
+          <div><div className="result-avatar">{opponent.avatar}</div><strong>{opponent.name}</strong><span>{'❤️'.repeat(Math.max(0, opponentHp))}</span></div>
         </div>
         <div className="score-box"><small>คะแนน</small><b>{score}</b></div>
+        <div className="xp-box">⭐ XP +{win ? 40 : 10} • Lv.{progress.level} • {progress.xp} XP</div>
         <div className="result-actions">
           <button className="primary-button" onClick={startBattle}>เล่นอีกครั้ง</button>
           <button className="secondary-button" onClick={() => setScreen('home')}>กลับ Game Zone</button>
@@ -242,7 +222,7 @@ export default function GameZone() {
       <div className="game-titlebar">🎮 GAME ZONE</div>
       <section className="game-hero">
         <div className="game-logo">LEARNING<br />HUB <span>GAME</span></div>
-        <div className="player-mini"><span>{player.avatar}</span><div><strong>ลูกปัด</strong><small>Lv.4 • {player.subject}</small></div><b>🪙 1,250</b></div>
+        <div className="player-mini"><span>{player.avatar}</span><div><strong>{name}</strong><small>Lv.{progress.level} • {player.subject}</small></div><b>⭐ {progress.xp} XP</b></div>
         <h1>เรียนรู้ แล้วไป Battle!</h1>
         <p>ตอบคำถามให้ถูกและเร็ว เพื่อโจมตีคู่ต่อสู้</p>
       </section>
