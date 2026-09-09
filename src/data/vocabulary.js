@@ -1,16 +1,16 @@
 const vocabulary = [
-  { word: "line graph", thai: "กราฟเส้น", pos: "Noun (N.)", definition: "a graph that uses points and lines." },
-  { word: "axes", thai: "แกน", pos: "Noun (N.)", definition: "often means the \"x\" and \"y\" lines that make a graph." },
-  { word: "picture graph", thai: "แผนภูมิรูปภาพ", pos: "Noun (N.)", definition: "a graph uses images or pictures." },
-  { word: "chemical", thai: "ปฏิกิริยาเคมี", pos: "Adjective (Adj.)", definition: "the interactions of substances." },
-  { word: "temperature", thai: "อุณหภูมิ", pos: "Noun (N.)", definition: "the perceptions of hotness and coldness." },
-  { word: "dissolve", thai: "ละลาย", pos: "Verb (V.)", definition: "cause to become a liquid to form a solution." },
-  { word: "insurance", thai: "การประกัน", pos: "Noun (N.)", definition: "a thing providing protection against a possible event." },
-  { word: "regulation", thai: "กฎข้อบังคับ", pos: "Noun (N.)", definition: "a rule made by an authority." },
-  { word: "equality", thai: "ความเท่าเทียม", pos: "Noun (N.)", definition: "when everyone had the same rights." },
-  { word: "borrow", thai: "ยืม", pos: "Verb (V.)", definition: "to obtain or receive." },
-  { word: "crossword", thai: "ปริศนาอักษรไขว้", pos: "Noun (N.)", definition: "a puzzle in which an arrangement of numbered squares is to be filled with words in answer to correspondingly numbered clues." },
-  { word: "video", thai: "วิดีโอ", pos: "Noun (N.)", definition: "the recording, reproducing, or broadcasting of moving visual images." }
+  { word: "mixed operation", thai: "การแก้โจทย์แบบผสมผสาน", pos: "Noun (N.)", definition: "arithmetic operations use more than two operations." },
+  { word: "match", thai: "จับคู่", pos: "Verb (V.)", definition: "correspond in some essential respect." },
+  { word: "equation", thai: "สมการ", pos: "Noun (N.)", definition: "two mathematical expressions are equal." },
+  { word: "force", thai: "บังคับ", pos: "Noun (N.)", definition: "the push or pull on an object" },
+  { word: "magnitude", thai: "ขนาด", pos: "Noun (N.)", definition: "the great size or extent of something." },
+  { word: "length", thai: "ความยาว", pos: "Noun (N.)", definition: "measurement or extent of something from end to end" },
+  { word: "estate", thai: "ทรัพย์สินที่ดิน", pos: "Noun (N.)", definition: "an area of land that can be developed." },
+  { word: "union", thai: "การรวมตัวกัน", pos: "Noun (N.)", definition: "association formed by a group of workers to protect their rights." },
+  { word: "solidarity", thai: "ความสามัคคี", pos: "Noun (N.)", definition: "unity of purpose, interest, or sympathy." },
+  { word: "volume", thai: "ระดับเสียง", pos: "Noun (N.)", definition: "the magnitude of sound (usually in a specified direction)" },
+  { word: "air conditioner", thai: "เครื่องปรับอากาศ", pos: "Noun (N.)", definition: "an apparatus for controlling, especially lowering, the temperature and humidity of an enclosed space." },
+  { word: "light", thai: "แสงสว่าง", pos: "Noun (N.)", definition: "the natural agent that stimulates sight and makes things visible." }
 ];
 
 export default vocabulary;
