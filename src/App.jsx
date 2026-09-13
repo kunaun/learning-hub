@@ -11,6 +11,8 @@ import Social from "./pages/Social";
 import Vocabulary from "./pages/Vocabulary";
 import ScienceSummary from "./pages/ScienceSummary";
 import ThaiSummary from "./pages/ThaiSummary";
+import Math from "./pages/Math";
+import MathSummary from "./pages/MathSummary";
 
 
 export default function App() {
@@ -20,20 +22,9 @@ export default function App() {
 
         <Route path="/" element={<Home />} />
         <Route path="/english" element={<English />} />
-        
-        
 
-{/* 
-        <Route
-          path="/pronouns"
-          element={<Pronouns />}
-        />
 
-        <Route
-          path="/tense"
-          element={<Tense />}
-        />
- */}
+
         <Route
           path="/lesson/:lessonId"
           element={<Lesson />}
@@ -58,6 +49,17 @@ export default function App() {
         path="/thai/:lessonId/summary"
         element={<ThaiSummary />}
         />
+
+        <Route path="/math" element={<Math />} />
+        <Route
+          path="/math/:lessonId"
+          element={<Lesson />}
+        />
+        <Route
+        path="/math/:lessonId/summary"
+        element={<MathSummary />}
+        />
+
 
         <Route path="/social" element={<Social />} />
         <Route
