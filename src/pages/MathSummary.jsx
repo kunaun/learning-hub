@@ -1,26 +1,25 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import livingthings from "../data/science/livingthings";
-import substances from "../data/science/substancesAndChange";
-import forceEnergy from "../data/science/forceAndEnergy";
-import earthSpace from "../data/science/earthAndSpace";
-import changesScience from "../data/science/changesScience";
-import soundEnergy from "../data/science/soundEnergy";
+  import mathLessons from "../data/mathLessons";
 
-const scienceData = {
-  "living-things": livingthings,
-  substances,
-  "force-energy": forceEnergy,
-  "earth-space": earthSpace,
-  "changes": changesScience,
-  "sound-energy": soundEnergy,
+
+const mathData = {
+  "length": length,
 };
 
-export default function ScienceSummary() {
+export default function mathSummary() {
   const navigate = useNavigate();
   const { lessonId } = useParams();
 
-  const lesson = scienceData[lessonId];
+  const lesson = mathData[lessonId];
+  
+};
+
+export default function mathSummary() {
+  const navigate = useNavigate();
+  const { lessonId } = useParams();
+
+  const lesson = mathData[lessonId];
 
   if (!lesson?.summary) {
     return (
@@ -37,10 +36,10 @@ export default function ScienceSummary() {
           </p>
 
           <button
-            onClick={() => navigate("/science")}
+            onClick={() => navigate("/math")}
             className="mt-6 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
           >
-            ← กลับไป Science
+            ← กลับไป math
           </button>
         </div>
       </div>
@@ -54,10 +53,10 @@ export default function ScienceSummary() {
       <div className="mx-auto max-w-4xl">
 
         <button
-          onClick={() => navigate("/science")}
+          onClick={() => navigate("/math")}
           className="mb-8 rounded-xl bg-white px-4 py-2 shadow hover:shadow-md"
         >
-          ← Science
+          ← math
         </button>
 
         <div className="mb-10 text-center">
@@ -115,7 +114,7 @@ export default function ScienceSummary() {
 
           <button
             onClick={() =>
-              navigate(`/science/${lessonId}`)
+              navigate(`/math/${lessonId}`)
             }
             className="mt-4 w-full rounded-xl bg-blue-600 py-4 font-semibold text-white hover:bg-blue-700"
           >

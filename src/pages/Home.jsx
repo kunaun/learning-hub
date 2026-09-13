@@ -12,8 +12,9 @@ const subjects = [
     id: 2,
     icon: "➗",
     name: "Mathematics",
-    description: "Coming Soon",
-    available: false,
+    description: "Math & Quiz",
+    available: true,
+    path: "/math",
   },
   {
     id: 3,

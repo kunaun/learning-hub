@@ -1,46 +1,16 @@
 import { useNavigate } from "react-router-dom";
 
-const scienceLessons = [
+const mathLessons = [
   {
-    id: "changes",
-    icon: "🔄",
-    title: "Changes Science",
-    description: "การเปลี่ยนแปลง",
-  },  
-  {
-    id: "sound-energy",
-    icon: "🎵",
-    title: "Sound & Energy",
-    description: "เสียงและพลังงาน",
+    id: "length",
+    icon: "📏",
+    title: "ความยาว (Length)",
+    description: "ความยาว (Length)",
   },
-  {
-    id: "living-things",
-    icon: "🌱",
-    title: "Living Things & Environment",
-    description: "สิ่งมีชีวิตและสิ่งแวดล้อม",
-  },
-  {
-    id: "substances",
-    icon: "🧪",
-    title: "Substances & Change",
-    description: "สารและการเปลี่ยนแปลง",
-  },
-  {
-    id: "force-energy",
-    icon: "⚡",
-    title: "Force & Energy",
-    description: "แรงและพลังงาน",
-  },
-  {
-    id: "earth-space",
-    icon: "🌍",
-    title: "Earth & Space",
-    description: "โลกและอวกาศ",
-  }
-
+  
 ];
 
-export default function Science() {
+export default function math() {
   const navigate = useNavigate();
 
   return (
@@ -56,7 +26,7 @@ export default function Science() {
 
         <div className="mb-12 text-center">
           <h1 className="text-5xl font-bold">
-            🧪 Science
+            📜 Mathematics
           </h1>
 
           <p className="mt-4 text-lg text-slate-600">
@@ -65,7 +35,7 @@ export default function Science() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {scienceLessons.map((lesson) => (
+          {mathLessons.map((lesson) => (
             <div
               key={lesson.id}
               className="rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
@@ -85,7 +55,7 @@ export default function Science() {
               <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={() =>
-                    navigate(`/science/${lesson.id}/summary`)
+                    navigate(`/math/${lesson.id}/summary`)
                   }
                   className="rounded-xl bg-emerald-500 py-3 font-semibold text-white hover:bg-emerald-600"
                 >
@@ -94,7 +64,7 @@ export default function Science() {
 
                 <button
                   onClick={() =>
-                    navigate(`/science/${lesson.id}`)
+                    navigate(`/math/${lesson.id}`)
                   }
                   className="rounded-xl bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700"
                 >

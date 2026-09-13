@@ -29,6 +29,10 @@ import religionAndEthics from "../data/social/religionAndEthics";
 import economics from "../data/social/economics";
 import geography from "../data/social/geography";
 import MascotFeedback from "../components/MascotFeedback";
+import changesScience from "../data/science/changesScience";
+import soundEnergy from "../data/science/soundEnergy";
+import mathLessons from "../data/mathLessons";
+import length from "../data/math/length";
 
 const lessonData = {
   nouns, verbs, adjectives, adverbs, prepositions, conjunctions, articles,
@@ -39,6 +43,7 @@ const lessonData = {
   "substances": substances,
   "force-energy": forceEnergy,
   "earth-space": earthSpace,
+  "changes": changesScience,
   "dialects": dialects,
   "foreignLoanwords": foreignLoanwords,
   "languageSkills": languageSkills,
@@ -49,6 +54,8 @@ const lessonData = {
   "religionAndEthics": religionAndEthics,
   "economics": economics,
   "geography": geography,
+  "sound-energy": soundEnergy,
+  "length": length
 };
 
 const lessonTitles = {
@@ -69,6 +76,9 @@ const lessonTitles = {
   "religionAndEthics": "Religion and Ethics",
   "economics": "Economics",
   "geography": "Geography",
+  "changes": "Changes Science",
+  "sound-energy": "Sound & Energy",
+  "length": "Length"
 };
 
 function shuffleQuestions(questions) {
