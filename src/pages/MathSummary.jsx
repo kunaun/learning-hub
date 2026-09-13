@@ -1,21 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-  import mathLessons from "../data/mathLessons";
-
+import length from "../data/math/length";
 
 const mathData = {
-  "length": length,
+  length,
 };
 
-export default function mathSummary() {
-  const navigate = useNavigate();
-  const { lessonId } = useParams();
-
-  const lesson = mathData[lessonId];
-  
-};
-
-export default function mathSummary() {
+export default function MathSummary() {
   const navigate = useNavigate();
   const { lessonId } = useParams();
 
@@ -39,7 +30,7 @@ export default function mathSummary() {
             onClick={() => navigate("/math")}
             className="mt-6 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
           >
-            ← กลับไป math
+            ← กลับไป Math
           </button>
         </div>
       </div>
@@ -56,7 +47,7 @@ export default function mathSummary() {
           onClick={() => navigate("/math")}
           className="mb-8 rounded-xl bg-white px-4 py-2 shadow hover:shadow-md"
         >
-          ← math
+          ← Math
         </button>
 
         <div className="mb-10 text-center">
@@ -72,7 +63,6 @@ export default function mathSummary() {
         </div>
 
         <div className="space-y-6">
-
           {summary.sections.map((section, index) => (
             <div
               key={index}
@@ -104,7 +94,6 @@ export default function mathSummary() {
               ))}
             </ul>
           </div>
-
         </div>
 
         <div className="mt-10 rounded-2xl bg-white p-6 text-center shadow-lg">
@@ -113,9 +102,7 @@ export default function mathSummary() {
           </p>
 
           <button
-            onClick={() =>
-              navigate(`/math/${lessonId}`)
-            }
+            onClick={() => navigate(`/math/${lessonId}`)}
             className="mt-4 w-full rounded-xl bg-blue-600 py-4 font-semibold text-white hover:bg-blue-700"
           >
             📝 เริ่มทำแบบฝึกหัด
