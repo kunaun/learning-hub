@@ -1,103 +1,93 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import thaiLessonGroups from "../data/thaiLessons";
 
-const thaiLessons = [
-  {
-    id: "dialects",
-    icon: "🗣️",
-    title: "ภาษาถิ่น (ภาษาถิ่นเหนือ ถิ่นอีสาน และถิ่นใต้)",
-    description: "ภาษาถิ่น (ภาษาถิ่นเหนือ ถิ่นอีสาน และถิ่นใต้)",
-  },
-  {
-    id: "foreignLoanwords",
-    icon: "🔤",
-    title: "คำที่มาจากภาษาต่างประเทศ",
-    description: "คำที่มาจากภาษาต่างประเทศ",
-  },
-  {
-    id: "languageSkills",
-    icon: "✍️",
-    title: "การพูด การฟัง และการเขียน",
-    description: "การพูด การฟัง และการเขียน",
-  },
-  {
-    id: "partsOfSpeech",
-    icon: "🧩",
-    title: "ชนิดของคำ (คำนาม คำสรรพนาม คำกริยา คำวิเศษณ์)",
-    description: "ชนิดของคำ (คำนาม คำสรรพนาม คำกริยา คำวิเศษณ์)",
-  },
-    {
-    id: "phoneticsAndSpelling",
-    icon: "🔊",
-    title: "คำควบกล้ำ อักษรนำ และตัวการันต์",
-    description: "คำควบกล้ำ อักษรนำ และตัวการันต์",
-  },
-];
-
-export default function thai() {
+export default function Thai() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-slate-100">
-      <div className="mx-auto max-w-6xl px-6 py-12">
+    <div className="min-h-screen bg-gray-50 p-6">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <button
+            onClick={() => navigate("/")}
+            className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+          >
+            ← กลับหน้าหลัก
+          </button>
 
-        <button
-          onClick={() => navigate("/")}
-          className="mb-8 rounded-xl bg-white px-4 py-2 shadow hover:shadow-md"
-        >
-          🏠 Home
-        </button>
-
-        <div className="mb-12 text-center">
-          <h1 className="text-5xl font-bold">
-            📜 Thai
+          <h1 className="text-3xl font-bold text-center">
+            📜 ภาษาไทย ป.๕
           </h1>
 
-          <p className="mt-4 text-lg text-slate-600">
-            เลือกหัวข้อที่ต้องการเรียน
-          </p>
+          <div className="w-[110px]" />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {thaiLessons.map((lesson) => (
-            <div
-              key={lesson.id}
-              className="rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="mb-5 text-5xl">
-                {lesson.icon}
+        {/* Lesson Groups */}
+        <div className="space-y-10">
+          {thaiLessonGroups.map((group) => (
+            <section key={group.id}>
+              {/* Group Header */}
+              <div className="mb-5">
+                <h2 className="text-2xl font-bold">
+                  {group.icon} {group.title}
+                </h2>
+
+                <p className="text-gray-600 mt-1">
+                  แต่ละหัวข้อมีสรุปเนื้อหาและแบบฝึกหัด 5 ข้อ
+                </p>
               </div>
 
-              <h2 className="text-2xl font-bold">
-                {lesson.title}
-              </h2>
+              {/* Lessons */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {group.lessons.map((lesson) => (
+                  <div
+                    key={lesson.id}
+                    className="bg-white rounded-2xl shadow-md p-5 border border-gray-100"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="text-3xl">
+                        {lesson.icon}
+                      </div>
 
-              <p className="mt-2 mb-6 text-slate-500">
-                {lesson.description}
-              </p>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold">
+                          {lesson.title}
+                        </h3>
 
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={() =>
-                    navigate(`/thai/${lesson.id}/summary`)
-                  }
-                  className="rounded-xl bg-emerald-500 py-3 font-semibold text-white hover:bg-emerald-600"
-                >
-                  📖 สรุปเนื้อหา
-                </button>
+                        <p className="text-gray-600 text-sm mt-2 leading-relaxed">
+                          {lesson.description}
+                        </p>
+                      </div>
+                    </div>
 
-                <button
-                  onClick={() =>
-                    navigate(`/thai/${lesson.id}`)
-                  }
-                  className="rounded-xl bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700"
-                >
-                  📝 แบบฝึกหัด
-                </button>
+                    {/* Buttons */}
+                    <div className="flex gap-3 mt-5">
+                      <button
+                        onClick={() =>
+                          navigate(`/thai/${lesson.id}/summary`)
+                        }
+                        className="flex-1 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium hover:bg-blue-200"
+                      >
+                        📖 สรุปเนื้อหา
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          navigate(`/thai/${lesson.id}`)
+                        }
+                        className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
+                      >
+                        📝 แบบฝึกหัด
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
+            </section>
           ))}
         </div>
-
       </div>
     </div>
   );
