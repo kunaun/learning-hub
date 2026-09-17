@@ -12,6 +12,15 @@ import sentenceStructure from "../data/sentence-structure";
 import tense from "../data/tense";
 import pronouns from "../data/pronouns";
 
+// -----------------------------
+// English
+// -----------------------------
+import unit7 from "../data/english/unit7";
+import unit8 from "../data/english/unit8";
+import unit9 from "../data/english/unit9";
+import unit10 from "../data/english/unit10";
+import unit11 from "../data/english/unit11";
+
 import scienceLessons from "../data/scienceLessons";
 import livingthings from "../data/science/livingthings";
 import substances from "../data/science/substancesAndChange";
@@ -56,6 +65,12 @@ import length from "../data/math/length";
 -------------------------------------------------- */
 
 const lessonData = {
+   // Final Gr.5
+  unit7,
+  unit8,
+  unit9,
+  unit10,
+  unit11,
   // English
   nouns,
   verbs,

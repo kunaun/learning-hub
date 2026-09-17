@@ -13,6 +13,7 @@ import ScienceSummary from "./pages/ScienceSummary";
 import ThaiSummary from "./pages/ThaiSummary";
 import Math from "./pages/Math";
 import MathSummary from "./pages/MathSummary";
+import EnglishSummary from "./pages/EnglishSummary";
 
 
 export default function App() {
@@ -24,6 +25,10 @@ export default function App() {
         <Route path="/english" element={<English />} />
 
 
+        <Route
+          path="/english/:lessonId/summary"
+          element={<EnglishSummary />}
+        />
 
         <Route
           path="/lesson/:lessonId"
