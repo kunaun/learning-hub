@@ -17,9 +17,9 @@ import pronouns from "../data/pronouns";
 // -----------------------------
 import unit7 from "../data/english/Unit7";
 import unit8 from "../data/english/Unit8";
-import unit9 from "../data/english/unit9";
-import unit10 from "../data/english/unit10";
-import unit11 from "../data/english/unit11";
+import unit9 from "../data/english/Unit9";
+import unit10 from "../data/english/Unit10";
+import unit11 from "../data/english/Unit11";
 
 import scienceLessons from "../data/scienceLessons";
 import livingthings from "../data/science/livingthings";
