@@ -1,4 +1,4 @@
-const grammarChapter8IrregularVerbs = {
+const Unit8 = {
   summary: {
     title: "My Next Grammar 2 - บทที่ 8: Past Simple Tense (Irregular Verbs)",
     description: "สรุปเนื้อหาและแบบฝึกหัดเรื่อง Past Simple Tense สำหรับคำกริยาอรูปไม่ปกติ (Irregular Verbs)",
@@ -67,4 +67,4 @@ const grammarChapter8IrregularVerbs = {
   ],
 };
 
-export default grammarChapter8IrregularVerbs;
+export default Unit8;

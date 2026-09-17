@@ -2,17 +2,17 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import Unit7 from "../data/english/Unit7";
-import grammarChapter8PastContinuous from "../data/english/Unit8";
-import grammarChapter9PresentPerfect from "../data/english/Unit9";
-import grammarChapter10FutureSimple from "../data/english/Unit10";
-import grammarChapter11FutureContinuous from "../data/english/Unit11";
+import Unit8 from "../data/english/Unit8";
+import Unit9 from "../data/english/Unit9";
+import Unit10 from "../data/english/Unit10";
+import Unit11 from "../data/english/Unit11";
 
 const englishData = {
   unit7: Unit7,
-  unit8: grammarChapter8PastContinuous,
-  unit9: grammarChapter9PresentPerfect,
-  unit10: grammarChapter10FutureSimple,
-  unit11: grammarChapter11FutureContinuous,
+  unit8: Unit8,
+  unit9: Unit9,
+  unit10: Unit10,
+  unit11: Unit11,
 };
 
 

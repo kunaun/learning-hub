@@ -1,4 +1,4 @@
-const grammarChapter9 = {
+const Unit9 = {
   summary: {
     title: "My Next Grammar 2 - บทที่ 9: Future (Will / Be Going To)",
     description: "สรุปเนื้อหาและแบบฝึกหัดเรื่อง Future Tense (Will และ Be going to)",
@@ -76,4 +76,4 @@ const grammarChapter9 = {
   ],
 };
 
-export default grammarChapter9;
+export default Unit9;
